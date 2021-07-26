@@ -28,14 +28,14 @@ public class HSAuthenticateAspect {
         System.out.println("Aspect :: postHandle, retVal={}");
     }
 
-    @Around("@annotation(id.hypersign.annotation.HSAuthenticate)")
-    public Object handle(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("@annotation(id.hypersign.annotation.HSAuthenticate) && args(.., @RequestBody body)")
+    public Object handle(ProceedingJoinPoint pjp ,Object body) throws Throwable {
         HSMiddlewareService hsMiddlewareService = new HSMiddlewareService();
         System.out.println("Aspect :: around - start");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
-
-        if(hsMiddlewareService.authenticate("dasddsdsdsd" ,"sdsad"))
+        System.out.println("body" + body.toString());
+        if(hsMiddlewareService.authenticate("sdsad" ,body.toString()))
            response.setStatus(200);
 
             return pjp.proceed();

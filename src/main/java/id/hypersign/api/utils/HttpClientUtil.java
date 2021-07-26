@@ -61,7 +61,8 @@ public class HttpClientUtil {
      * @Param String jwtToken
      */
     public static String authServerCall(String jsonRequest, String authServerUrl) throws Exception {
-        logger.debug("Novus Request =>" + jsonRequest);
+        logger.debug("request to auth end point =>" + jsonRequest);
+        System.out.println("request to auth end point =>" + jsonRequest);
         ObjectMapper mapper = new ObjectMapper();
         String mockresult ="";
         CloseableHttpClient client = HttpClientUtil.getTrustedHttpsClient();
@@ -72,7 +73,7 @@ public class HttpClientUtil {
         httpPost.setEntity(payLoad);
 
         CloseableHttpResponse response = client.execute(httpPost);
-        if (response.getStatusLine().getStatusCode() == 201) {
+        if (response.getStatusLine().getStatusCode() == 200) {
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 mockresult = EntityUtils.toString(entity);

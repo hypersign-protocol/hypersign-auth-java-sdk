@@ -1,5 +1,7 @@
 package id.hypersign.credential;
 
+import id.hypersign.api.utils.HttpClientUtil;
+
 public class Credential implements ICredential {
 
     @Override
@@ -18,9 +20,10 @@ public class Credential implements ICredential {
     }
 
     @Override
-    public Object verifyPresentation() {
-        //Call /hs/api/v1/auth api of hs_auth_server by passing VP sent from user.
-        // And get the actual user data as a response
-     return null;
+    public String verifyPresentation(String challenge) throws Exception {
+        System.out.println("Challenge is: " + challenge);
+        String authserver = "https://stage.hypermine.in/hsauth/hs/api/v2/auth";
+        String userdata = HttpClientUtil.authServerCall(challenge, authserver);
+     return userdata;
     }
 }

@@ -16,7 +16,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @ServerEndpoint(value = "/hsauth", decoders = MessageDecoder.class, encoders = MessageEncoder.class)
 public class HSWebSocket {
     private Session session;
-    final String baseurl = "https://reqres.in/api/users";
+    final String baseurl = "https://stage.hypermine.in/hsauth/hs/api/v2/newsession";
     private static HashMap<String, String> users = new HashMap<>();
 
     public HSWebSocket() {
@@ -26,17 +26,14 @@ public class HSWebSocket {
     @OnOpen
     public void onOpen(Session session) throws Exception {
         String input = "{\n" +
-                "    \"name\": \"morpheus\",\n" +
-                "    \"job\": \"leader\"\n" +
+                "    \"baseUrl\": \"https://192.168.100.116:8443/spring-mvc/rest/auth\"\n" +
                 "}";
         this.session = session;
         ConnectionStore.getInstance().addConnection(session);
         Message message = new Message();
-        message.setContent("Connected!");
-        //Make a rest call to /newSession api by passing base url as a request body and get QR data in response.
-        //Set QR data to message content
         String qrCode = HttpClientUtil.authServerCall(input ,baseurl);
         message.setContent(qrCode);
+        System.out.println("QRcode content is " + qrCode);
         session.getBasicRemote().sendObject(message);
     }
 

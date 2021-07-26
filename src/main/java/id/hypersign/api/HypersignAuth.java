@@ -18,8 +18,8 @@ public class HypersignAuth {
         hsMiddlewareService.authorize("dsada");
     }
 
-    public void authenticate() throws IOException, EncodeException {
-     hsMiddlewareService.authenticate(null ,"dasdasasd");
+    public void authenticate() throws Exception {
+     hsMiddlewareService.authenticate("dasdasasd","sds");
     }
 
     public void extractToken(){

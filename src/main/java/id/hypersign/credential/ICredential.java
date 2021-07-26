@@ -7,6 +7,6 @@ public interface ICredential {
 
     public void verifyCredential();
 
-    public Object verifyPresentation();
+    public String verifyPresentation(String challenge) throws Exception;
 
 }
