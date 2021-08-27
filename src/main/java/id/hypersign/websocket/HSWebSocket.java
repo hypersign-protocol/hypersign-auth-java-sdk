@@ -26,7 +26,7 @@ public class HSWebSocket {
     @OnOpen
     public void onOpen(Session session) throws Exception {
         String input = "{\n" +
-                "    \"baseUrl\": \"https://192.168.100.116:8443/spring-mvc/rest/auth\"\n" +
+                "    \"baseUrl\": \"http://localhost:8080/spring-mvc/rest/auth\"\n" +
                 "}";
         this.session = session;
         ConnectionStore.getInstance().addConnection(session);
