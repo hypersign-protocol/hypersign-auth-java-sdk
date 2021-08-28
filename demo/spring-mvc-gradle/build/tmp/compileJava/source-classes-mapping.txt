@@ -1,6 +1,0 @@
-com/github/mperry/rest/RestController.java
- com.github.mperry.rest.RestController
-com/github/mperry/rest/AuthResponse.java
- com.github.mperry.rest.AuthResponse
-cors/CORSFilterImp.java
- cors.CORSFilterImp
